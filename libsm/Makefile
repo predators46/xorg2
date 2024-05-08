@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=COPYING
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/libSM-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/libSM-$(PKG_VERSION)
 
-HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host xtrans/host libice/host util-linux/host
+HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host xtrans/host libice/host
 PKG_BUILD_DEPENDS:=util-macros xorgproto xtrans
 
 HOST_BUILD_PARALLEL:=1
