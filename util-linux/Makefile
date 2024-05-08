@@ -25,7 +25,6 @@ PKG_LICENSE_FILES:=	COPYING					\
 			libuuid/COPYING				\
 			Documentation/licenses/COPYING.BSD-3
 
-HOST_BUILD_DEPENDS:=ncurses/host
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/host-build.mk
@@ -683,7 +682,7 @@ MESON_HOST_ARGS += \
 	-Dbuild-pylibmount=disabled \
 	-Dreadline=disabled \
 	-Dmagic=disabled \
-	-Dncursesw=enabled
+	-Dncursesw=disabled
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
