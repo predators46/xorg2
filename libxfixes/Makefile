@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-HOST_BUILD_DIR:=$(BUILD_DIR)/libXfixes-$(PKG_VERSION)
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/libXfixes-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/libXfixes-$(PKG_VERSION)
 
 HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host libx11/host
