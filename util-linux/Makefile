@@ -27,6 +27,7 @@ PKG_LICENSE_FILES:=	COPYING					\
 
 PKG_INSTALL:=1
 
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/meson.mk
 
@@ -627,6 +628,62 @@ MESON_ARGS += \
 	-Dmagic=disabled \
 	-Dncursesw=enabled
 
+MESON_HOST_ARGS += \
+	-Dsystemd=disabled \
+	-Dtinfo=disabled \
+	-Dcryptsetup=disabled \
+	-Dlibutil=disabled \
+	-Dlibutempter=disabled \
+	-Dlibpcre2-posix=disabled \
+	-Dlibuser=disabled \
+	-Duse-tty-group=false \
+	-Duse-tls=false \
+	-Dbuild-python=disabled \
+	-Dbuild-zramctl=disabled \
+	-Dbuild-fsck=disabled \
+	-Dbuild-wipefs=disabled \
+	-Dbuild-fallocate=disabled \
+	-Dbuild-setpriv=disabled \
+	-Dbuild-hardlink=disabled \
+	-Dbuild-cramfs=disabled \
+	-Dbuild-bfs=disabled \
+	-Dbuild-minix=disabled \
+	-Dbuild-fdformat=disabled \
+	-Dbuild-lslogins=disabled \
+	-Dbuild-wdctl=disabled \
+	-Dbuild-cal=disabled \
+	-Dbuild-switch_root=disabled \
+	-Dbuild-pivot_root=disabled \
+	-Dbuild-lsmem=disabled \
+	-Dbuild-lsirq=disabled \
+	-Dbuild-irqtop=disabled \
+	-Dbuild-chmem=disabled \
+	-Dbuild-ipcrm=disabled \
+	-Dbuild-rfkill=disabled \
+	-Dbuild-tunelp=disabled \
+	-Dbuild-kill=disabled \
+	-Dbuild-last=disabled \
+	-Dbuild-utmpdump=disabled \
+	-Dbuild-line=disabled \
+	-Dbuild-mesg=disabled \
+	-Dbuild-raw=disabled \
+	-Dbuild-vipw=disabled \
+	-Dbuild-newgrp=disabled \
+	-Dbuild-chfn-chsh=disabled \
+	-Dbuild-login=disabled \
+	-Dbuild-nologin=disabled \
+	-Dbuild-sulogin=disabled \
+	-Dbuild-su=disabled \
+	-Dbuild-runuser=disabled \
+	-Dbuild-ul=disabled \
+	-Dbuild-pg=disabled \
+	-Dbuild-write=disabled \
+	-Dbuild-bash-completion=disabled \
+	-Dbuild-pylibmount=disabled \
+	-Dreadline=disabled \
+	-Dmagic=disabled \
+	-Dncursesw=enabled
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/blkid.pc $(1)/usr/lib/pkgconfig
@@ -951,3 +1008,4 @@ $(eval $(call BuildPackage,uuidgen))
 $(eval $(call BuildPackage,wall))
 $(eval $(call BuildPackage,whereis))
 $(eval $(call BuildPackage,wipefs))
+$(eval $(call HostBuild))
