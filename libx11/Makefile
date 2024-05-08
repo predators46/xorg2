@@ -93,5 +93,15 @@ define Package/libx11/install
 	  $(1)/usr/lib/
 endef
 
+define Host/Install
+	$(call Host/Install/Default)
+	$(INSTALL_DIR) \
+	  $(STAGING_DIR_HOSTPKG)/lib/pkgconfig
+
+	$(CP) \
+	  $(HOST_BUILD_DIR)/*.pc \
+	  $(STAGING_DIR_HOSTPKG)/lib/pkgconfig/
+endef
+
 $(eval $(call HostBuild))
 $(eval $(call BuildPackage,libx11))
