@@ -12,12 +12,17 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
+HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/libICE-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/libICE-$(PKG_VERSION)
 
+HOST_BUILD_DEPENDS:=util-macros/host xorgproto/host xtrans/host
 PKG_BUILD_DEPENDS:=util-macros xorgproto xtrans
+
+HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libice
@@ -38,7 +43,15 @@ CONFIGURE_ARGS += \
 	--disable-docs \
 	--without-xmlto \
 	--without-xsltproc \
-	--without-fop \
+	--without-fop
+
+HOST_CONFIGURE_ARGS += \
+	--enable-static \
+	--disable-shared \
+	--disable-docs \
+	--without-xmlto \
+	--without-xsltproc \
+	--without-fop
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
@@ -63,4 +76,5 @@ define Package/libice/install
 	  $(1)/usr/lib/
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,libice))
