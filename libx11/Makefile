@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=COPYING
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/libX11-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/libX11-$(PKG_VERSION)
 
-HOST_BUILD_DEPENDS:=xtrans/host xorgproto/host util-macros/host
+HOST_BUILD_DEPENDS:=xtrans/host xorgproto/host util-macros/host libxcb/host
 PKG_BUILD_DEPENDS:=xtrans xorgproto util-macros
 
 HOST_BUILD_PARALLEL:=1
