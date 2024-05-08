@@ -47,8 +47,7 @@ CONFIGURE_ARGS += \
 HOST_CONFIGURE_ARGS += \
 	--enable-static \
 	--disable-shared \
-	--disable-pam \
-	--without-x
+	--disable-pam
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
