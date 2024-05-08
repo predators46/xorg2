@@ -12,7 +12,7 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
-HOST_BUILD_DEPENDS:=libx11/host
+HOST_BUILD_DEPENDS:=libx11/host libxfixes/host libxrandr/host libice/host libsm/host
 PKG_BUILD_DEPENDS:=xrdp/host
 
 PKG_FIXUP:=autoreconf
