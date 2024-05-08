@@ -58,5 +58,15 @@ define Build/InstallDev
 	  $(1)/usr/share/
 endef
 
+define Host/Install
+	$(call Host/Install/Default)
+	$(INSTALL_DIR) \
+	  $(STAGING_DIR_HOSTPKG)/lib/pkgconfig
+
+	$(CP) \
+	  $(HOST_BUILD_DIR)/xtrans.pc \
+	  $(STAGING_DIR_HOSTPKG)/lib/pkgconfig/
+endef
+
 $(eval $(call HostBuild))
 $(eval $(call BuildPackage,xtrans))
