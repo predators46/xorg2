@@ -45,6 +45,8 @@ CONFIGURE_ARGS += \
 	--enable-tjpeg
 
 HOST_CONFIGURE_ARGS += \
+	--x-includes="$(STAGING_DIR_HOSTPKG)/include" \
+	--x-libraries="$(STAGING_DIR_HOSTPKG)/lib" \
 	--enable-static \
 	--disable-shared \
 	--disable-pam
