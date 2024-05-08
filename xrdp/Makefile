@@ -12,10 +12,15 @@ PKG_MAINTAINER:=Esa Aprilia Salsabila <esaapriliasalsabila@gmail.com>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
 
+HOST_BUILD_DEPENDS:=libx11/host
+
 PKG_FIXUP:=autoreconf
+
+HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
+include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/xrdp
@@ -38,15 +43,11 @@ CONFIGURE_ARGS += \
 	--disable-pam \
 	--enable-tjpeg
 
-define Build/Compile
-	CC="$(HOSTCC) $(HOST_CFLAGS) $(HOST_CPPFLAGS) $(HOST_LDFLAGS)" $(MAKE) \
-		-C $(PKG_BUILD_DIR)/common
-	CC="$(HOSTCC) $(HOST_CFLAGS) $(HOST_CPPFLAGS) $(HOST_LDFLAGS)" $(MAKE) \
-		-C $(PKG_BUILD_DIR)/keygen
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/keygen/xrdp-keygen $(STAGING_DIR_HOSTPKG)/bin/
-	$(call Build/Compile/Default)
-endef
+HOST_CONFIGURE_ARGS += \
+	--enable-static \
+	--disable-shared \
+	--disable-pam \
+	--without-x
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
@@ -89,6 +90,5 @@ define Package/xrdp/install
 	  $(1)/etc/
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,xrdp))
-
-
